@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registracija">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/bground"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginTop="45dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Ime"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/editText3"
+            android:layout_marginTop="106dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Prezime"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText3"
+            android:layout_alignStart="@+id/editText3"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Spol"
+            android:textColor="#FFFFFF" />
+
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:alpha="0.6"
+            android:text="REGISTRUJ SE" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Popunite prazna polja licnim podacima"
+            android:textColor="#FFFFFF"
+            android:textSize="30px"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginBottom="137dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Korisnicko ime"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/editText3"
+            android:layout_marginTop="161dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:text="E-mail"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editText2"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="221dp"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Datum rodjenja"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/editText3"
+            android:layout_marginBottom="74dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="Sifra"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
