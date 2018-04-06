@@ -1,0 +1,253 @@
+\documentclass[a4paper oneside ,12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{slashbox}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage[table, dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{tabu}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\graphicspath{ {images/} }
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\restylefloat{table} 
+
+\begin{document} 
+\title{\textbf{Bookshelf} \\ }
+\author{DIZAJN SISTEMA \\ Tim 14} 
+\maketitle  
+\thispagestyle{empty}
+\hfill \break 
+\renewcommand*\contentsname{Sadržaj}
+
+\newpage
+\section*{Historija izmjena}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+Verzija & Autor             & Datum                & Komentar     \\ \hline
+1.0     & Tim 14 - Melisoft & 05. April, 2018. god. & Prva verzija \\ \hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Uvod}
+\subsection{Svrha dokumenta}
+Svrha ovog dokumenta jeste da se prikaže dizajn sistema korištenjem dijagrama koji će pojednostaviti razumijevanje samog sistema i njegovih relacija sa ostalim korisnicima. \par
+
+\subsection{Opseg (scope) dokumenta}
+Unutar dokumenta će biti prikazani sljedeći dijagrami:
+\begin{enumerate}
+    \item Use case dijagrami/Dijagrami slučaja upotrebe
+    \item Dijagrami aktivnosti
+    \item ER dijagram
+\end{enumerate}
+
+\subsection{Standardi i dokumentacija}
+Dokument je pisan u formatu koji je u skladu sa IEEE 830-1998 standardom. Za izradu dokumenta korišteni su Word 2016, StarUML i Visual Paradigm.\par
+
+\subsection{Reference}
+
+\begin{center}
+\begin{longtable}{| p{.5\textwidth} | p{.5\textwidth} |} 
+ \hline
+ \rowcolor{Apricot}
+Pojam &	Definicija \\ \hline
+ER dijagram	& Entity-relationships $\to$ Prikazuje pojednostavljenu strukturu baze podataka sistema. \\ \hline
+Dijagram aktivnosti	 & Prikazuje tok dešavanja aktivnosti \\ \hline
+Use Case dijagram/Dijagram slučaja upotrebe &	Prikazuju moguće ponašanje korisnika u sistemu \\ \hline
+
+\end{longtable}
+\end{center} 
+
+
+\newpage
+\section{Dijagrami}
+\subsection{Use case dijagrami}
+Pošto u sklopu naše aplikacije ne postoji administrator, vodeću ulogu u upravljanju ovim sistemom ima korisnik sistema. Prema njemu su i prilagođene sve pogodnosti naše aplikacije, a sljedeći use case dijagrami Prikazuju kakve sve slučajeve pokriva korisnik. \par
+ 
+\subsubsection{Upravljanje korisničkim računima}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.45]{slbr2111}
+\caption*{\textit{Slika broj 2.1.1.1. - Use Case dijagram - Upravljanje korisničkim računima}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Upravljanje listama knjiga}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.6]{slbr21221}
+\caption*{\textit{Slika broj 2.1.2.1. - Use Case dijagram - Upravljanje listama knjiga}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Registracija na sistem}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.45]{slbr2131}
+\caption*{\textit{Slika broj 2.1.3.1. - Use Case dijagram - Registracija na sistem}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Odjava sa sistema}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.45]{slbr2141}
+\caption*{\textit{Slika broj 2.1.4.1. - Use Case dijagram - Odjava sa sistema}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Pretraga knjiga}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.5]{slbr2151}
+\caption*{\textit{Slika broj 2.1.5.1. - Use Case dijagram - Pretraga knjiga}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Prijava na sistem}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.6]{slbr2161}
+\caption*{\textit{Slika broj 2.1.6.1. - Use Case dijagram - Prijava na sistem}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Ocjenjivanje i komentarisanje knjiga}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.6]{slbr2171}
+\caption*{\textit{Slika broj 2.1.7.1. - Use Case dijagram - Ocjenjivanje i komentarisanje knjiga}}
+\end{center}
+\end{figure}
+\end{center}
+
+\newpage
+\subsection{Activity dijagrami}
+U ovom dijelu će biti prikazani dijagrami aktivnosti za sve korisnike, unos nove knjige, formiranje kluba čitalaca, pregledanje listi knjiga i članova. Pod korisnikom se podrazumijeva korisnik koji ima vlastiti račun na „Bookshelf“ mobilnoj aplikaciji ili se prijavljuje putem svog Facebook računa. \par
+
+\subsubsection{Registracija korisnika }
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2211}
+\caption*{\textit{Slika broj 2.2.1.1. - Activity dijagram - Registracija korisnika}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Prijava na sistem }
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2221}
+\caption*{\textit{Slika broj 2.2.2.1. - Activity dijagram - Prijava na sistem}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Odjava sa sistema }
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.6]{slbr2231}
+\caption*{\textit{Slika broj 2.2.3.1. - Activity dijagram - Odjava sa sistema}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Upravljanje listama knjiga}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2241}
+\caption*{\textit{Slika broj 2.2.4.1. - Activity dijagram - Upravljanje listama knjiga}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Osnivanje kluba knjige}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.6]{slbr2251}
+\caption*{\textit{Slika broj 2.2.5.1. - Activity dijagram - Osnivanje kluba knjige}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Pretraga knjiga}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2261}
+\caption*{\textit{Slika broj 2.2.6.1. - Activity dijagram - Pretraga knjiga}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsubsection{Ocjenjivanje/komentarisanje knjige}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2271}
+\caption*{\textit{Slika broj 2.2.7.1. - Activity dijagram - Ocjenjivanje/komentarisanje knjige}}
+\end{center}
+\end{figure}
+\end{center}
+
+\subsection{Entity relationship dijagrami (ERD)}
+\subsubsection{Entity relationship dijagram (ERD) sistema „Bookshelf“}
+\begin{center}
+\begin{figure}[H] 
+\begin{center}
+\includegraphics[scale=0.8]{slbr2311}
+\caption*{\textit{Slika broj 2.3.1.1. - ERD dijagram - Entity relationship dijagram (ERD) sistema „Bookshelf“}}
+\end{center}
+\end{figure}
+\end{center} 
+
+
+
+
+
+
+
+
+
+
+\end{document} 
