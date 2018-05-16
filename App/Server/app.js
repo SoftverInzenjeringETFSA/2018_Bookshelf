@@ -8,6 +8,20 @@ var chalk = require('chalk');
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
+//database string
+const MongoClient = require('mongodb').MongoClient;
+
+const MONGO_URL = 'mongodb://userdb:userdb@ds016148.mlab.com:16148/bookshelfdb';
+MongoClient.connect(MONGO_URL, (err,db)=> {
+  if(err) {
+    return console.log(err);
+  }
+  console.log("moze baza ");
+  
+
+});
+
+
 var app = express();
 
 app.use(logger('dev'));
