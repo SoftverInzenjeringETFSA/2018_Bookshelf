@@ -6,21 +6,40 @@ var logger = require('morgan');
 var chalk = require('chalk');
 
 var indexRouter = require('./routes/index');
+var registrationRouter = require('./routes/registrationRoute');
 // var usersRouter = require('./routes/users');
 
 //database string
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
 
-const MONGO_URL = 'mongodb://userdb:userdb@ds016148.mlab.com:16148/bookshelfdb';
-MongoClient.connect(MONGO_URL, (err,db)=> {
-  if(err) {
-    return console.log(err);
-  }
-  console.log("moze baza ");
+// const MONGO_URL = 'mongodb://userdb:userdb@ds016148.mlab.com:16148/bookshelfdb';
+// MongoClient.connect(MONGO_URL, (err,db)=> {
+//   if(err) {
+//     return console.log(err);
+//   }
+//   console.log("moze baza ");
   
 
-});
+// });
 
+
+// const mongoose = require('mongoose');
+// const config = require('./config');
+
+// mongoose.Promise = global.Promise;
+// mongoose.connect(config.database.connectionString);
+
+// let db = mongoose.connection;
+
+// // Check connection
+// db.once('open', function(){
+//     console.log('Connected to MongoDB');
+// });
+  
+// // Check for DB errors
+// db.on('error', function(err){
+//     console.error(err);
+// });
 
 var app = express();
 
@@ -32,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
+app.use('/registration', registrationRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
