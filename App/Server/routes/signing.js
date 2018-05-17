@@ -1,6 +1,6 @@
 
 const express = require("express");
-const users = express.Router();
+const signing = express.Router();
 const expressValidator = require("express-validator");
 const { check, validationResult } = require("express-validator/check");
 const bodyParser = require("body-parser");
@@ -10,26 +10,23 @@ const passport = require("passport");
 const uuid = require("uuid/v4");
 const LocalStrategy = require("passport-local").Strategy;
 const LokiStore = require("connect-loki")(session);
-//const db =
+const User = require('../models/user');
 
-let Users = [
-  { id: 1, email: "neno93993@gmail.com", password: "password", validatePassword: function(pass1, pass2) { return pass1 === pass2} },
-  { id: 2, email: "none@gmail.com", password: "password" }
-];
 
 //passport konfiguracija
 
 passport.use(
-  new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
+  new LocalStrategy({ usernameField: "username" }, (username, password, done) => {
     return new Promise((resolve, reject) => {
-      Users.find(user => user.email === email)
+      console.log(User.find());
+      User.find(user => user.username === username)
         .then((user, err) => {
           if (err) {
             reject(new Error("Server Error"));
           }
           if (!user) {
             return done(null, false, {
-              message: "Pogrešna email adresa. ",
+              message: "Pogrešno korisničko ime. ",
               error: 0
             });
           }
@@ -51,7 +48,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  Users.find(user => user.id === id)
+  User.find(user => user.id === id)
     .then(async user => {
       return await done(null, user);
       return;
@@ -61,14 +58,14 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-users.use(bodyParser());
-users.use(bodyParser.json());
-users.use(
+signing.use(bodyParser());
+signing.use(bodyParser.json());
+signing.use(
   bodyParser.urlencoded({
     extended: true
   })
 );
-users.use(
+signing.use(
   session({
     key: "id",
     genid: req => uuid(),
@@ -81,11 +78,11 @@ users.use(
     store: new LokiStore({})
   })
 );
-users.use(passport.initialize());
-users.use(passport.session());
-users.use(expressValidator());
-users.use(cookieParser());
-users.use((req, res, next) => {
+signing.use(passport.initialize());
+signing.use(passport.session());
+signing.use(expressValidator());
+signing.use(cookieParser());
+signing.use((req, res, next) => {
   if (req.cookies.id && !req.session.user) {
     res.clearCookie("id");
   }
@@ -100,16 +97,17 @@ var sessionChecker = (req, res, next) => {
 
 
 //Route
-users.get('/login', (req, res) => {
+signing.get('/login', (req, res) => {
+  console.log(db.user.find());
     res.status(200).json("Uspješno ste došli do login stranice");
 })
 
-users.post(
+signing.post(
     "/login",
     [
-      check("email")
-        .isEmail()
-        .withMessage("Morate unijeti validnu email adresu. "),
+      check("username")
+        .exists()
+        .withMessage("Morate unijeti validno korisničko ime. "),
       check("password")
         .isLength({ min: 1 })
         .withMessage("Morate unijeti šifru. ")
@@ -146,7 +144,7 @@ users.post(
     }
   );
   
-  users.get("/authrequired", (req, res) => {
+  signing.get("/authrequired", (req, res) => {
     if (req.isAuthenticated()) {  
       res
         .status(200)
@@ -156,10 +154,10 @@ users.post(
     }
   });
 
-  users.get("/logout", function(req, res) {
+  signing.get("/logout", function(req, res) {
     req.logout();
     req.session.destroy();
     res.status(200).json("Uspješno ste se izlogovali. Dođite nam opet! ");
   });
 
-module.exports = users;
+module.exports = signing;
