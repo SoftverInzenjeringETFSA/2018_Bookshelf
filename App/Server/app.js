@@ -10,7 +10,7 @@ var indexRouter = require('./routes/index');
 
 //database string
 const MongoClient = require('mongodb').MongoClient;
-
+//Ovo cemo staviti u .env (environment variables), ali zasad je u ovom fajlu
 const MONGO_URL = 'mongodb://userdb:userdb@ds016148.mlab.com:16148/bookshelfdb';
 MongoClient.connect(MONGO_URL, (err,db)=> {
   if(err) {
