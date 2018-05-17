@@ -3,6 +3,8 @@
 let User = require('../../models/user');
 
 module.exports = (req, res) => {
+    console.log('tu smo');
+    
     const name = req.body.name;
     const last_name = req.body.last_name;
     const birth_date = req.body.birth_date;
