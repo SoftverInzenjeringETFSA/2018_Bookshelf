@@ -27,7 +27,8 @@ const UserSchema = mongoose.Schema({
     },
     username: {
         type: String,      
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,      
@@ -37,10 +38,10 @@ const UserSchema = mongoose.Schema({
 
 
 // methods
-UserSchema.methods.hashPassword = (password) => {
-    this.password = bcrypt.hashSync(password, salt);
-    console.log('this.password: ' + this.password);
-}
+// UserSchema.methods.hashPassword = (password) => {
+//     this.password = bcrypt.hashSync(password, salt);
+//     console.log('this.password: ' + this.password);
+// }
 
 const User = module.exports = mongoose.model('User', UserSchema, 'user');
 
@@ -49,17 +50,15 @@ UserSchema.path('password').validate(v => {
     return v.length > 6;
 }, 'Password needs to be more than 6 characters long');
 
-UserSchema.path('username').validate(v => {
-    let exists = false;
-    User.findOne({ username: v }, (err, user) => {
-        console.log('received username: ' + v);
-        // console.log('found username: ' + user.username);
-        if (err)
-            console.error(err);
-        exists = (user === null);
-        console.log(exists);
-        
-    });
-    return exists;
-}, 'Username already exists');
+// UserSchema.path('username').validate(v => {  
+//     var userExists;
 
+//     User.findOne({ username: v }, (err, user) => { 
+//         if (err)
+//             console.error(err);
+//         userExists = user === null;
+//     });
+
+//     console.log(userExists);
+//     return userExists;
+// }, 'Username already exists');

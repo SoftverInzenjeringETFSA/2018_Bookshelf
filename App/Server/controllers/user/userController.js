@@ -2,6 +2,7 @@
 const registerUser = require('./createPost');
 const getAllUsers = require('./allGet');
 const getUser = require('./readGet');
+const deleteUser= require('./deleteDelete');
 
 module.exports = {
     register: {
@@ -17,6 +18,11 @@ module.exports = {
 	read: {
 		get(req, res) {
 			getUser(req, res);
+		}
+	},
+	delete: {
+		delete(req, res) {
+			deleteUser(req, res);
 		}
 	}
 }

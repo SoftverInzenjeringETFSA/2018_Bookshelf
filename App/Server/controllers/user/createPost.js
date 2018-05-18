@@ -1,9 +1,10 @@
 'use strict';
 
 let User = require('../../models/user');
+const bcrypt = require('bcrypt');
+const salt = bcrypt.genSaltSync();
 
 module.exports = (req, res) => {
-    console.log('tu smo');
     
     const name = req.body.name;
     const last_name = req.body.last_name;
@@ -13,8 +14,12 @@ module.exports = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    console.log('-------------------------');
+
     console.log(req.body);
 
+    console.log('-------------------------');    
+    
     let newUser = new User({
         name: name,
         last_name: last_name,
@@ -22,16 +27,16 @@ module.exports = (req, res) => {
         email: email,
         gender: gender,
         username: username,
-        password: password
+        password: bcrypt.hashSync(password, salt)
     });
 
-    newUser.hashPassword(newUser.password);
     console.log(newUser.password);
     newUser.save(err => {
         if (err) {
             console.log(err);
             res.json({ error: err });
         } else {
+            console.log('user saved');           
             res.json({ message: 'Registration successful' });
         }
     });
