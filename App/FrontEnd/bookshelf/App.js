@@ -12,8 +12,8 @@ import { FlatList,
 		 TouchableHighlight
 		  } from 'react-native';
 
-export default class FlatListDemo extends Component {
-	constructor(props){
+export default class App extends Component {
+	/*constructor(props){
 	    super(props);
 
 	    this.state = {
@@ -27,36 +27,36 @@ export default class FlatListDemo extends Component {
   	}
   	componentDidMount() {
     	this.getReadBooks();
-  	}
+  	}*/
   	
-	getBooksByName = () => {
-		    const url = 'http://192.168.0.15:3000/searchbooks/5afb6717544bca318651700e';
-		    this.setState({ loading: true });
-		    fetch(url,{
-					method: 'POST',
-					body: JSON.stringify({
-						name: document.getElementById('textForSearch').textContent
-					})
-				})
-		      .then(res => res.json())
-		      .then(res => {
-		        this.setState({
-		          data: res,
-		          error: res.error || null,
-		          loading: false,
-		          refreshing: false
-		        });
-		      })
-		      .catch(error => {
-		        this.setState({ error, loading: false });
-		      });
-  };
-  
-  
- 
+	// getBooksByName = () => {
+	// 	    const url = 'http://192.168.0.20:3000/searchbooks';
+	// 	    this.setState({ loading: true });
+	// 	    fetch(url,{
+	// 				method: 'POST',
+	// 				body: JSON.stringify({
+	// 					name: document.getElementById('textForSearch').textContent
+	// 				})
+	// 			})
+	// 	      .then(res => res.json())
+	// 	      .then(res => {
+	// 	        this.setState({
+	// 	          data: res,
+	// 	          error: res.error || null,
+	// 	          loading: false,
+	// 	          refreshing: false
+	// 	        });
+	// 	      })
+	// 	      .catch(error => {
+	// 	        this.setState({ error, loading: false });
+	// 	      });
+  // };
   	render() {
 	    return (
-	    	<ImageBackground source={require('./images/bgroundbokeh.jpg')} style={styles.MainContainer}>
+				<View>						
+					<Text>Hello world</Text>
+				</View>
+	    	/*<ImageBackground source={require('./images/bgroundbokeh.jpg')} style={styles.MainContainer}>
 		        <View style={styles.flex}>
 								<View>
 									<TextInput id="textForSearch">
@@ -89,7 +89,7 @@ export default class FlatListDemo extends Component {
             )}
             renderRow={this.renderRow}
 			      />
-	    	</ImageBackground>
+	    	</ImageBackground>*/
         
       );
      

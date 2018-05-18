@@ -40,8 +40,8 @@ module.exports.getBooks = (callback, limit) => {
 }
 
 // Get Books By Name
-module.exports.getBooksByName = (name,callback) =>{
-	Book.find({name: new RegExp('.*'+name+'.*')});
+module.exports.getBooksByName = (name) =>{
+	Book.find({name: new RegExp('.*'+name+'.*')})
 }
 
 // Get Book

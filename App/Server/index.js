@@ -22,11 +22,14 @@ app.get('/', (req, res) => {
 });
 
 app.post('/searchBooks',(req,res)=>{
-	book.getBooksByName(req.name,(err,books)=>{
-		if(err) throw err;
+	let name = req.body.name;
+	book.getBooksByName((err,name)=>{
+		if(err){
+			throw err;
+		}
 		res.json(books);
 	});
-	res.send('ok');
+	res.send('ok')
 });
 
 app.get('/books', (req, res) => {
