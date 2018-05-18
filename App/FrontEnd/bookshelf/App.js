@@ -28,30 +28,16 @@ export default class FlatListDemo extends Component {
   	componentDidMount() {
     	this.getReadBooks();
   	}
-  	getReadBooks = () => {
-		    const url = 'http://192.168.0.15:3000/myreadbooks/5afb6717544bca318651700e';
-        this.setState({ loading: true });
-      
-		    fetch(url)
-		      .then(res => res.json())
-		      .then(res => {
-            
-		        this.setState({
-              data: res,
-              
-		          error: res.error || null,
-		          loading: false,
-		          refreshing: false
-		        });
-		      })
-		      .catch(error => {
-		        this.setState({ error, loading: false });
-		      });
-	};
-	getUnReadBooks = () => {
-		    const url = 'http://192.168.0.15:3000/myunreadbooks/5afb6717544bca318651700e';
+  	
+	getBooksByName = () => {
+		    const url = 'http://192.168.0.15:3000/searchbooks/5afb6717544bca318651700e';
 		    this.setState({ loading: true });
-		    fetch(url)
+		    fetch(url,{
+					method: 'POST',
+					body: JSON.stringify({
+						name: document.getElementById('textForSearch').textContent
+					})
+				})
 		      .then(res => res.json())
 		      .then(res => {
 		        this.setState({
@@ -65,76 +51,21 @@ export default class FlatListDemo extends Component {
 		        this.setState({ error, loading: false });
 		      });
   };
-  getAllBooks = () => {
-    const url = 'http://192.168.0.15:3000/books';
-		    this.setState({ loading: true });
-		    fetch(url)
-		      .then(res => res.json())
-		      .then(res => {
-		        this.setState({
-		          data: res,
-		          error: res.error || null,
-		          loading: false,
-		          refreshing: false
-		        });
-		      })
-		      .catch(error => {
-		        this.setState({ error, loading: false });
-		      });
-  }
- 
-	getRecommendedBooks = () => {
-		    const url = 'http://192.168.0.15:3000/mybooks/5afb6717544bca318651700e';
-		    this.setState({ loading: true });
-		    fetch(url)
-		      .then(res => res.json())
-		      .then(res => {
-		        this.setState({
-		          data: res,
-		          error: res.error || null,
-		          loading: false,
-		          refreshing: false
-		        });
-		      })
-		      .catch(error => {
-		        this.setState({ error, loading: false });
-          });
-        }
-          getBookDetails = () => {
-            const url = 'http://192.168.0.15:3000/books/5afb65c3544bca318651700c';
-            this.setState({ loading: true });
-            fetch(url)
-              .then(res => res.json())
-              .then(res => {
-                this.setState({
-                  data: res,
-                  error: res.error || null,
-                  loading: false,
-                  refreshing: false
-                });
-              })
-              .catch(error => {
-                this.setState({ error, loading: false });
-              });
-
-  }
+  
+  
  
   	render() {
 	    return (
 	    	<ImageBackground source={require('./images/bgroundbokeh.jpg')} style={styles.MainContainer}>
 		        <View style={styles.flex}>
+								<View>
+									<TextInput id="textForSearch">
+
+									</TextInput>
+								</View>
 		            <View style={styles.buttonContainer}>
-		  	          <Button buttonStyle={styles.button} title="Read books" onPress={() => {this.getReadBooks()}}/>
-		            </View>
-		            <View style={styles.buttonContainer}>
-		               <Button buttonStyle={styles.button} title="Unread books" onPress={() => {this.getUnReadBooks()}}/>
-		            </View>
-		            <View style={styles.buttonContainer}>
-		               <Button buttonStyle={styles.button} title="Recommended books" onPress={() => {this.getRecommendedBooks()}}/>
-		            </View>
-                <View style={styles.buttonContainer}>
-		               <Button buttonStyle={styles.button} title="All books" onPress={() => {this.getAllBooks()}}/>
-		            </View>
+		  	          <Button buttonStyle={styles.button} title="Search books" onPress={() => {this.getBooksByName()}}/>
+		            </View>		            
 			    </View>
 			    <FlatList
                data={this.state.data}

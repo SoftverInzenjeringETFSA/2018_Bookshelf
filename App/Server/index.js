@@ -21,6 +21,14 @@ app.get('/', (req, res) => {
 	res.send('Hey there');
 });
 
+app.post('/searchBooks',(req,res)=>{
+	book.getBooksByName(req.name,(err,books)=>{
+		if(err) throw err;
+		res.json(books);
+	});
+	res.send('ok');
+});
+
 app.get('/books', (req, res) => {
 	book.getBooks((err, books) => {
 		if(err){
