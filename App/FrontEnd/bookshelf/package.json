@@ -21,6 +21,9 @@
   "dependencies": {
     "expo": "^27.0.1",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "react-native": "~0.55.2",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-elements": "*",
+    "tcomb-form-native": "^0.6.11"
   }
 }

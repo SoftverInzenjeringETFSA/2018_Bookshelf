@@ -52,9 +52,13 @@ UserSchema.path('password').validate(v => {
 UserSchema.path('username').validate(v => {
     let exists = false;
     User.findOne({ username: v }, (err, user) => {
+        console.log('received username: ' + v);
+        // console.log('found username: ' + user.username);
         if (err)
             console.error(err);
         exists = (user === null);
+        console.log(exists);
+        
     });
     return exists;
 }, 'Username already exists');
