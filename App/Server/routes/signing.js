@@ -20,7 +20,7 @@ passport.use(
     { usernameField: "username" },
     (username, password, done) => {
       return new Promise((resolve, reject) => {
-        
+        User.find().then(res => console.log(res))
         User.findOne({ username: username })
           .then((user) => {
 
@@ -32,7 +32,7 @@ passport.use(
                 error: 0
               });
             }
-            if (!user.comparePasswordsWithoutHash(password, user.password)) {
+            if (!user.comparePasswords(password, user.password)) {
 
               return done(null, false, {
                 message: "Pogrešna lozinka. ",
