@@ -11,6 +11,7 @@ import {
  } from 'react-native';
 
 import { createBookClub } from '../actions/ClubActions';
+import { DodajClanove } from '../actions/ClubActions';
 
 const Logo = require('../assets/Logo.jpg');
 
@@ -20,7 +21,8 @@ export default class CreateClub extends React.Component {
 
     this.state = {
       nazivKluba: '',
-      nazivKnjige: ''
+      nazivKnjige: '',
+      isValid: true
     }
     this.navigateTo = this.navigateTo.bind(this);
   }
@@ -32,7 +34,19 @@ export default class CreateClub extends React.Component {
     this.props.navigation.navigate( routeName, params || {} );
   }
 
+  onCreateBookClubPress = () => {
+    if( this.state.nazivKluba === '' || this.state.nazivKnjige === '' )
+      return this.setState({ isValid: false });
+    
+    createBookClub({
+      nazivKluba: this.state.nazivKluba,
+      nazivKnjige: this.state.nazivKnjige
+    }, this.props.navigation)
+  }
+
+
   render() {
+
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.container}>
@@ -46,6 +60,15 @@ export default class CreateClub extends React.Component {
              source={Logo}/>
           </View>
 
+          {
+            !this.state.isValid && 
+         //   <View style={{display: 'flex',
+          //  justifyContent: 'center'}}>
+              <Text style={{textAlign: "center", color: "red"}}>
+              Morate barem nesto unijeti
+              </Text>
+           //   </View>
+          }
           <View style={[styles.footer]}>
 
             <TextInput
@@ -64,11 +87,11 @@ export default class CreateClub extends React.Component {
               onChangeText={ (text) => this.setState({nazivKnjige: text}) }
             />
 
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text onPress={ () => this.navigateTo('AddMembers') } style={styles.buttonText}>DODAJ CITAOCE U KLUB</Text>
+            <TouchableOpacity onPress={ () => DodajClanove( this.state, this.props.navigation ) } style={styles.buttonContainer}>
+              <Text  style={styles.buttonText}>DODAJ CITAOCE U KLUB</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer2}>
-              <Text onPress={ () => createBookClub( this.state, this.props.navigation ) } style={styles.buttonText}>KREIRAJ KLUB KNJIGE</Text>
+            <TouchableOpacity onPress={ () => this.onCreateBookClubPress() } style={styles.buttonContainer2}>
+              <Text  style={styles.buttonText}>KREIRAJ KLUB KNJIGE</Text>
             </TouchableOpacity>
 
 

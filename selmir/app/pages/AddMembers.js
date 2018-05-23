@@ -10,6 +10,7 @@ import {
 
 import UserComponent from './components/UserComponent';
 import { AddMembersStyle as styles } from '../stylesheets/styles.js';
+import { vratiSeNaPocetnu } from '../actions/ClubActions';
 
 export default class AddMembers extends React.Component {
     constructor(props){
@@ -18,6 +19,9 @@ export default class AddMembers extends React.Component {
         userArray:[{'ime':'Selmir Satrovic'},{'ime':'Faruk Sinanovic'},{'ime':'Aldo Selimovic'}],
       }
     }
+    static navigationOptions = {
+      header: null
+    };
 
   renderUsers = (users) => {
     return users.map( (val, key) => {
@@ -36,7 +40,7 @@ export default class AddMembers extends React.Component {
             <Text style={styles.headerText}>Bookshelf</Text>
           </View>
 
-          <TouchableOpacity style={styles.buttonContainer2}>
+          <TouchableOpacity onPress={ () => vratiSeNaPocetnu( this.state, this.props.navigation ) } style={styles.buttonContainer2}>
               <Text style={styles.buttonText}>ODABERI KORISNIKE</Text>
           </TouchableOpacity>
 
